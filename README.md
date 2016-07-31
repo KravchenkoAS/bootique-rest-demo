@@ -16,8 +16,7 @@ java -jar target/bootique-demo-0.0.1-SNAPSHOT.jar --server
 ```
 Then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/). 
 
-To run with **custom** config:
-```
-java -jar target/bootique-demo-0.0.1-SNAPSHOT.jar --server --config=test.yml
-```
-Then open [http://127.0.0.1:9000/bq](http://127.0.0.1:9000/bq).
+Available metrics URLs:
+
+* [http://127.0.0.1:8080/metrics](http://127.0.0.1:8080/metrics).
+* [http://127.0.0.1:8080/threads](http://127.0.0.1:8080/threads).

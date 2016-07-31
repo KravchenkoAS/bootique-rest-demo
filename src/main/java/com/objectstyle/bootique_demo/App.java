@@ -2,6 +2,7 @@ package com.objectstyle.bootique_demo;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.servlets.MetricsServlet;
+import com.codahale.metrics.servlets.ThreadDumpServlet;
 import com.google.inject.Binder;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Key;
@@ -30,6 +31,7 @@ public class App implements Module {
     @Override
     public void configure(Binder binder) {
         JettyModule.contributeMappedServlets(binder).addBinding().to(Key.get(MappedServlet.class, MetricsMappedServlet.class));
+        JettyModule.contributeMappedServlets(binder).addBinding().to(Key.get(MappedServlet.class, MetricsThreadDumpServlet.class));
         JerseyModule.contributeResources(binder).addBinding().to(HelloApi.class);
     }
 
@@ -44,6 +46,20 @@ public class App implements Module {
     @Retention(RetentionPolicy.RUNTIME)
     @BindingAnnotation
     public @interface MetricsMappedServlet {
+
+    }
+
+    @MetricsThreadDumpServlet
+    @Provides
+    MappedServlet mappedThreadDumpServlet() {
+        ThreadDumpServlet servlet = new ThreadDumpServlet();
+        return new MappedServlet(servlet, Collections.singleton("/threads"), "threads");
+    }
+
+    @Target({ElementType.METHOD})
+    @Retention(RetentionPolicy.RUNTIME)
+    @BindingAnnotation
+    public @interface MetricsThreadDumpServlet {
 
     }
 }
