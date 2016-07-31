@@ -32,6 +32,11 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+				<groupId>io.dropwizard.metrics</groupId>
+				<artifactId>metrics-servlets</artifactId>
+				<version>3.1.2</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -51,6 +56,10 @@
 		<dependency>
 			<groupId>com.nhl.bootique.logback</groupId>
 			<artifactId>bootique-logback</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-servlets</artifactId>
 		</dependency>
 	</dependencies>
 
